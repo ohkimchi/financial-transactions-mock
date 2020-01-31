@@ -5,8 +5,15 @@ export const getAllTransactionsData = async (dispatch: any) => {
     async (res: any) => {
       const resObj = await res.json()
       const { items } = resObj
+      const updatedItems = items.map((item: any) => {
+        const { id, created, updated, amount, currency, state, initiatorDetails } = item
+        return {
+          id, created, updated, amount, currency, state, initiatorDetails
+        }
+      })
+      console.log(updatedItems)
       dispatch({
-        allTransactionsData: items,
+        allTransactionsData: updatedItems,
         type: AppActionType.SET_ALL_TRANSACTIONS_DATA
       })
     }
