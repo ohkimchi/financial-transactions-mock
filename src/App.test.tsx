@@ -1,9 +1,18 @@
-import { render } from '@testing-library/react'
-import React from 'react'
-import App from './App'
+import { correctUpdatedTranData, oldTranData } from './test/data'
+import { refundOneTran } from './utils/utils'
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />)
-  const linkElement = getByText(/learn react/i)
-  expect(linkElement).toBeInTheDocument()
+test('update the data with correct state as REFUNDED', () => {
+  const targetTran = {
+    id: 'id3',
+    created: 'created3',
+    updated: 'updated3',
+    amount: 10000011,
+    currency: 'SGD',
+    state: 'Confirmed',
+    contactName: 'name3'
+  }
+
+  const updatedTran = refundOneTran(targetTran as any, oldTranData as any)
+  console.log('updatedTran', updatedTran)
+  expect(updatedTran).toEqual(correctUpdatedTranData)
 })

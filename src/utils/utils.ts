@@ -1,4 +1,4 @@
-import { AppActionType } from './AppReducer'
+import { AppActionType } from '../App/AppReducer'
 
 export const getAllTransactionsData = async (dispatch: any) => {
   await fetch('http://localhost:3000/getAllTransactionsData').then(
@@ -18,4 +18,16 @@ export const getAllTransactionsData = async (dispatch: any) => {
       })
     }
   )
+}
+
+export function refundOneTran(transaction: any, allTransactionsData: any[]) {
+  const entryPos = allTransactionsData.indexOf(transaction)
+  const allTransactionsDataTemp = allTransactionsData
+
+  const updatedEntry = {
+    ...transaction,
+    state: 'REFUNDED'
+  }
+  allTransactionsDataTemp[entryPos] = updatedEntry
+  return allTransactionsDataTemp
 }

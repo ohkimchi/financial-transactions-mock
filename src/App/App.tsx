@@ -1,8 +1,8 @@
 import React, { useEffect, useReducer } from 'react'
 import styled from 'styled-components'
+import { getAllTransactionsData, refundOneTran } from '../utils/utils'
 import './App.css'
 import { AppActionType, AppContext, AppReducer, initialState } from './AppReducer'
-import { getAllTransactionsData } from './utils'
 
 const TransactionDivWrapper = styled.div`
   padding: 5px;
@@ -35,15 +35,10 @@ const App = () => {
   }, [])
 
   function updateTransactionState(transaction: any) {
-    const updatedEntry = {
-      ...transaction,
-      state: 'REFUNDED'
-    }
-    const entryPos = allTransactionsData.indexOf(transaction)
-    const allTransactionsDataTemp = allTransactionsData
-    allTransactionsDataTemp[entryPos] = updatedEntry
+    console.log('allTransactionsData', allTransactionsData)
+    const updatedEntry = refundOneTran(transaction, allTransactionsData)
     dispatch({
-      allTransactionsData: allTransactionsDataTemp,
+      allTransactionsData: updatedEntry,
       type: AppActionType.SET_ALL_TRANSACTIONS_DATA
     })
   }
