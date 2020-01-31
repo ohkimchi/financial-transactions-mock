@@ -1,0 +1,3 @@
+[submodule "Local-Server-Mockup"]
+	path = Local-Server-Mockup
+	url = https://github.com/ohkimchi/Local-Server-Mockup.git
