@@ -7,11 +7,11 @@ export const getAllTransactionsData = async (dispatch: any) => {
       const { items } = resObj
       const updatedItems = items.map((item: any) => {
         const { id, created, updated, amount, currency, state, initiatorDetails } = item
+        const { contactName } = initiatorDetails
         return {
-          id, created, updated, amount, currency, state, initiatorDetails
+          id, created, updated, amount, currency, state, contactName
         }
       })
-      console.log(updatedItems)
       dispatch({
         allTransactionsData: updatedItems,
         type: AppActionType.SET_ALL_TRANSACTIONS_DATA

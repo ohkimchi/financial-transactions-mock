@@ -4,15 +4,6 @@ export enum AppActionType {
   SET_ALL_TRANSACTIONS_DATA = 'SET_ALL_TRANSACTIONS_DATA',
   SET_TARGET_TRANSACTION = 'SET_TARGET_TRANSACTION'
 }
-
-export interface IInitiatorDetailsObj {
-  id: string
-  contactEmail: string
-  contactName: string
-  firstName: string
-  lastName: string
-}
-
 export interface ITransactionObj {
   id: string
   created: string
@@ -20,7 +11,7 @@ export interface ITransactionObj {
   amount: number
   currency: string
   state: string
-  initiatorDetails: IInitiatorDetailsObj
+  contactName: string
 }
 
 export interface IAppAction {

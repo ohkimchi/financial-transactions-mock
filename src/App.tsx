@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer } from 'react'
 import styled from 'styled-components'
 import './App.css'
-import { AppContext, AppReducer, initialState } from './AppReducer'
+import { AppActionType, AppContext, AppReducer, initialState } from './AppReducer'
 import { getAllTransactionsData } from './utils'
 
 const TransactionDivWrapper = styled.div`
@@ -9,9 +9,23 @@ const TransactionDivWrapper = styled.div`
   background: white;
 `
 const TransactionDiv = styled.div`
-margin: 5px;
-background: lightgrey;
+  margin: 5px;
+  background: lightgrey;
 `
+
+const StateDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+const StateSpan = styled.span`
+  color: blue;
+`
+
+const RefundButton = styled.button`
+  color: red;
+  font-size: 16px;
+`
+
 const App = () => {
   const [state, dispatch] = useReducer(AppReducer, initialState)
   const { allTransactionsData } = state
@@ -20,26 +34,39 @@ const App = () => {
     getAllTransactionsData(dispatch)
   }, [])
 
-  useEffect(() => {
-    if (allTransactionsData) {
-      allTransactionsData.map((trans: any) => {
-        Object.entries(trans).map((entry: any) => console.log(entry))
-      })
+  function updateTransactionState(transaction: any) {
+    const updatedEntry = {
+      ...transaction,
+      state: 'REFUNDED'
     }
-
-  }, [allTransactionsData])
+    const entryPos = allTransactionsData.indexOf(transaction)
+    const allTransactionsDataTemp = allTransactionsData
+    allTransactionsDataTemp[entryPos] = updatedEntry
+    dispatch({
+      allTransactionsData: allTransactionsDataTemp,
+      type: AppActionType.SET_ALL_TRANSACTIONS_DATA
+    })
+  }
 
   return (
     <AppContext.Provider value={ { state, dispatch } }>
       <div className='App'>
-        { allTransactionsData && allTransactionsData.map((trans: any) => {
+        { allTransactionsData && allTransactionsData.map((trans: any, i: number) => {
           return (
-            <TransactionDivWrapper>
+            <TransactionDivWrapper key={ `transaction-${i}` }>
               <TransactionDiv>
-                { Object.entries(trans).map((entry: any) => {
-                  return (
-                    <div>{ entry.toString() }</div>
-                  )
+                { Object.entries(trans).map((entry: any, j: number) => {
+                  return (entry[0] === 'state'
+                    ? <StateDiv key={ `transaction-${i}-entry-${j}` }>
+                      <StateSpan>{ `${entry[0]}: ${entry[1]} ` }</StateSpan>
+                      {
+                        entry[1] !== 'REFUNDED'
+                        && (<RefundButton
+                          onClick={ () => updateTransactionState(trans) }
+                        >REFUND</RefundButton>)
+                      }
+                    </StateDiv>
+                    : <div key={ `transaction-${i}-entry-${j}` }>{ `${entry[0]}: ${entry[1]}` }</div>)
                 }) }
               </TransactionDiv>
             </TransactionDivWrapper>
