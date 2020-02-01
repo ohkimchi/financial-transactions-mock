@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/financial-transactions-mock/static/css/main.b4a3080c.chunk.css",
+    "main.js": "/financial-transactions-mock/static/js/main.085e3b60.chunk.js",
+    "main.js.map": "/financial-transactions-mock/static/js/main.085e3b60.chunk.js.map",
+    "runtime-main.js": "/financial-transactions-mock/static/js/runtime-main.ac7c3b86.js",
+    "runtime-main.js.map": "/financial-transactions-mock/static/js/runtime-main.ac7c3b86.js.map",
+    "static/js/2.a185e9f5.chunk.js": "/financial-transactions-mock/static/js/2.a185e9f5.chunk.js",
+    "static/js/2.a185e9f5.chunk.js.map": "/financial-transactions-mock/static/js/2.a185e9f5.chunk.js.map",
+    "index.html": "/financial-transactions-mock/index.html",
+    "precache-manifest.6218bf183e8bb6edcd4a538b89d6b102.js": "/financial-transactions-mock/precache-manifest.6218bf183e8bb6edcd4a538b89d6b102.js",
+    "service-worker.js": "/financial-transactions-mock/service-worker.js",
+    "static/css/main.b4a3080c.chunk.css.map": "/financial-transactions-mock/static/css/main.b4a3080c.chunk.css.map",
+    "static/js/2.a185e9f5.chunk.js.LICENSE": "/financial-transactions-mock/static/js/2.a185e9f5.chunk.js.LICENSE"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ac7c3b86.js",
+    "static/js/2.a185e9f5.chunk.js",
+    "static/css/main.b4a3080c.chunk.css",
+    "static/js/main.085e3b60.chunk.js"
+  ]
+}
