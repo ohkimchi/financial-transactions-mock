@@ -1,5 +1,5 @@
-import { correctUpdatedTranData, oldTranData } from './test/data'
-import { refundOneTran } from './utils/utils'
+import { refundOneTran } from '../utils/utils'
+import { correctUpdatedTranData, oldTranData } from './data'
 
 test('update the data with correct state as REFUNDED', () => {
   const targetTran = {
@@ -13,6 +13,5 @@ test('update the data with correct state as REFUNDED', () => {
   }
 
   const updatedTran = refundOneTran(targetTran as any, oldTranData as any)
-  console.log('updatedTran', updatedTran)
   expect(updatedTran).toEqual(correctUpdatedTranData)
 })

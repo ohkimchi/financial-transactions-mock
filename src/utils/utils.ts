@@ -6,10 +6,24 @@ export const getAllTransactionsData = async (dispatch: any) => {
       const resObj = await res.json()
       const { items } = resObj
       const updatedItems = items.map((item: any) => {
-        const { id, created, updated, amount, currency, state, initiatorDetails } = item
+        const {
+          id,
+          created,
+          updated,
+          amount,
+          currency,
+          state,
+          initiatorDetails
+        } = item
         const { contactName } = initiatorDetails
         return {
-          id, created, updated, amount, currency, state, contactName
+          id,
+          created,
+          updated,
+          amount,
+          currency,
+          state,
+          contactName
         }
       })
       dispatch({
@@ -21,7 +35,9 @@ export const getAllTransactionsData = async (dispatch: any) => {
 }
 
 export function refundOneTran(transaction: any, allTransactionsData: any[]) {
-  const entryPos = allTransactionsData.indexOf(transaction)
+  const checkObjectEqual = (ele: any) =>
+    JSON.stringify(ele) === JSON.stringify(transaction)
+  const entryPos = allTransactionsData.findIndex(checkObjectEqual)
   const allTransactionsDataTemp = allTransactionsData
 
   const updatedEntry = {
